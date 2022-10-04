@@ -5,6 +5,7 @@ import java.io.*;
 public class Ejercicio1_6 {
     public static void main(String[] args) throws IOException {
         Runtime runtime = Runtime.getRuntime();
+
         if (args.length != 3) {
             System.out.println("Comando invalido. Uso: ");
             System.out.println("comando origen texto destino");
@@ -12,6 +13,7 @@ public class Ejercicio1_6 {
         else {
             String[] commands = {"grep", args[1], args[0]};
             Process process = runtime.exec(commands);
+
 
 
             InputStreamReader isr = new InputStreamReader(process.getInputStream());
