@@ -1,4 +1,4 @@
-package com.terfezio;
+package com.terfezio.Tema1;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,13 +11,12 @@ public class Ejercicio1_6_2 {
         }
         else {
             File outputFile = new File(args[2]);
-            ProcessBuilder processBuilder = new ProcessBuilder("grep", args[2], args[1]);
+            ProcessBuilder processBuilder = new ProcessBuilder("grep", args[1], args[0]);
             //processBuilder.inheritIO();
 
             processBuilder.directory(new File("/home/raul/"));
             processBuilder.redirectOutput(outputFile);
             processBuilder.start();
-
         }
     }
 }

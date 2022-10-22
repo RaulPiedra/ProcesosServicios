@@ -1,4 +1,4 @@
-package com.terfezio;
+package com.terfezio.Tema1;
 
 import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
