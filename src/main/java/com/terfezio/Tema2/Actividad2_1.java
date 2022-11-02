@@ -10,6 +10,7 @@ public class Actividad2_1 {
         System.out.println("Identificador: " + thread.getId());
         System.out.println("Estado: " + thread.getState());
         System.out.println("¿Es daemon?: " + thread.isDaemon());
+        System.out.println("Grupo de hilos:" + thread.getThreadGroup());
         System.out.println("Prioridad: " + thread.getPriority());
     }
 }
