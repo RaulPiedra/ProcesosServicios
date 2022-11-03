@@ -10,13 +10,16 @@ public class NumeroOculto extends Thread {
     @Override
     public void run() {
         int numeroPropuesto;
-        int respuesta = -100;
+        int respuesta;
         do {
             numeroPropuesto = (int) (Math.random() * 100 + 1);
-            System.out.println("Soy el hilo " + this.nombre + " y propongo el " + numeroPropuesto);
             respuesta = this.propuestaNumero(numeroPropuesto);
 
-            System.out.println("Soy el hilo " + this.nombre + " y he recibido de respuesta el " + respuesta);
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
             if (respuesta == 1) {
             System.out.println("Soy el hilo " + this.nombre + " y he ganado");
         }
