@@ -1,9 +1,9 @@
 package com.terfezio.Tema2.Contadores;
 
 public class IncrementaContadores implements Runnable {
-    private Contadores contadores;
-    private String nombre;
-    private int parte;
+    private final Contadores contadores;
+    private final String nombre;
+    private final int parte;
     public IncrementaContadores(Contadores contadores, String nombre, int parte) {
         super();
         this.contadores = contadores;
@@ -34,8 +34,8 @@ public class IncrementaContadores implements Runnable {
         for (int i = 0; i < hilos.length; i++) {
             hilos[i] = new Thread(new IncrementaContadores(contadores1, "Hilo " + i, parte));
         }
-        for (int i = 0; i < hilos.length; i++) {
-            hilos[i].start();
+        for (Thread hilo : hilos) {
+            hilo.start();
         }
 
     }
