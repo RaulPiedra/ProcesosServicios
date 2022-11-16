@@ -11,19 +11,23 @@ public class NumeroOculto extends Thread {
     public void run() {
         int numeroPropuesto;
         int respuesta;
+        long startTime = System.nanoTime();
         do {
             numeroPropuesto = (int) (Math.random() * 100 + 1);
             respuesta = this.propuestaNumero(numeroPropuesto);
 
-            try {
+            /*try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
-            }
+            }*/
             if (respuesta == 1) {
             System.out.println("Soy el hilo " + this.nombre + " y he ganado");
         }
         } while (respuesta != -1);
+        long stopTime = System.nanoTime();
+        long nanos = (stopTime - startTime); /// 1000000;
+        System.out.println("Soy el hilo " + this.nombre + " y he tardado " + nanos + " nanosegundos");
     }
 
     public int propuestaNumero(int numeroPropuesto) {
@@ -44,12 +48,17 @@ public class NumeroOculto extends Thread {
 
         NumeroOculto[] nmo = new NumeroOculto[10];
 
+        long startTime = System.nanoTime();
         for (int i = 0; i < nmo.length; i++) {
             nmo[i] = new NumeroOculto("Hilo " + i);
+            nmo[i].start();
 
         }
-        for (NumeroOculto numeroOculto1: nmo) {
+        /*for (NumeroOculto numeroOculto1: nmo) {
             numeroOculto1.start();
-        }
+        }*/
+        long stopTime = System.nanoTime();
+        long nanos = (stopTime - startTime); // / 1000000;
+        System.out.println("Hilos listos y funcionando en " + nanos + " nanosegundos");
     }
 }
