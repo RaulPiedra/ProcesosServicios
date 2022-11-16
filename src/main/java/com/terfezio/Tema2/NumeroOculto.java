@@ -15,16 +15,17 @@ public class NumeroOculto extends Thread {
         do {
             numeroPropuesto = (int) (Math.random() * 100 + 1);
             respuesta = this.propuestaNumero(numeroPropuesto);
+            System.out.println(this.nombre + ": " + numeroPropuesto);
 
-            /*try {
+            try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
-            }*/
+            }
             if (respuesta == 1) {
             System.out.println("Soy el hilo " + this.nombre + " y he ganado");
         }
-        } while (respuesta != -1);
+        } while (respuesta == 0);
         long stopTime = System.nanoTime();
         long nanos = (stopTime - startTime); /// 1000000;
         System.out.println("Soy el hilo " + this.nombre + " y he tardado " + nanos + " nanosegundos");
