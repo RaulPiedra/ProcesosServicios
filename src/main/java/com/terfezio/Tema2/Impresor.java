@@ -33,7 +33,7 @@ public class Impresor extends Thread {
             new Impresor().start();
         }
         //Dejamos tiempo para que acaben los hilos
-        Thread.sleep(1000);
+        //Thread.sleep(1000);
         //Sacamos el valor del acumulador (debe valer 500)
         System.out.println(acumulador);
     }
