@@ -21,9 +21,9 @@ public class UserThread extends Thread{
             DataOutputStream writer = new DataOutputStream(output);
             writer.writeUTF("hola");
 
-            String filePath = reader.readLine();
-            System.out.println(filePath);
-            filePath = "C:\\Users\\raul\\IdeaProjects\\ProcesosServicios\\src\\main\\java\\com\\terfezio\\tema3\\fileserver\\FileClient.java";
+            //String filePath = reader.readLine();
+            //System.out.println(filePath);
+            String filePath = "C:\\Users\\raul\\IdeaProjects\\ProcesosServicios\\src\\main\\java\\com\\terfezio\\tema3\\fileserver\\FileClient.java";
 
             BufferedReader fileBufferedReader = new BufferedReader(new FileReader(filePath));
             String line = fileBufferedReader.readLine();

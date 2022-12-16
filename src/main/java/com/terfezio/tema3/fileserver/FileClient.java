@@ -37,7 +37,11 @@ public class FileClient {
             //    line = fileBufferedReader.readLine();
             //}
             DataInputStream dataInputStream = new DataInputStream(inputStream);
-            System.out.println(dataInputStream.readUTF());
+            String line = dataInputStream.readUTF();
+            while (line != null) {
+                System.out.println(line);
+                line = dataInputStream.readUTF();
+            }
 
             servidor.close();
             System.out.println("Soy el cliente y cierro la conexión");
