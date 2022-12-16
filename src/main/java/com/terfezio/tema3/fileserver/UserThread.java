@@ -24,6 +24,8 @@ public class UserThread extends Thread{
             //String filePath = reader.readLine();
             //System.out.println(filePath);
             String filePath = "C:\\Users\\raul\\IdeaProjects\\ProcesosServicios\\src\\main\\java\\com\\terfezio\\tema3\\fileserver\\FileClient.java";
+            String firstLine = reader.readLine();
+            System.out.println("First line: " + firstLine);
 
             BufferedReader fileBufferedReader = new BufferedReader(new FileReader(filePath));
             String line = fileBufferedReader.readLine();

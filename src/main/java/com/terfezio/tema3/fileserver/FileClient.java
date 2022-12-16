@@ -25,9 +25,12 @@ public class FileClient {
             //System.out.print("Introduzca ruta y nombre de un archivo: ");
             //String filePath = kb.readLine();
 
-            //OutputStream outputStream = servidor.getOutputStream();
+            OutputStream outputStream = servidor.getOutputStream();
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(outputStream);
             //DataOutputStream writer = new DataOutputStream(outputStream);
+            BufferedWriter writer = new BufferedWriter(outputStreamWriter);
             //writer.writeUTF(filePath);
+            writer.write("recontrahola");
 
             InputStream inputStream = servidor.getInputStream();
             //BufferedReader fileBufferedReader = new BufferedReader(new InputStreamReader(inputStream));
