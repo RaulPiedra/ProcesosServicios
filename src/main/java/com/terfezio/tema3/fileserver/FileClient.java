@@ -30,7 +30,8 @@ public class FileClient {
             //DataOutputStream writer = new DataOutputStream(outputStream);
             BufferedWriter writer = new BufferedWriter(outputStreamWriter);
             //writer.writeUTF(filePath);
-            writer.write("recontrahola");
+            writer.write("recontrahola\n");
+            writer.flush();
 
             InputStream inputStream = servidor.getInputStream();
             //BufferedReader fileBufferedReader = new BufferedReader(new InputStreamReader(inputStream));
