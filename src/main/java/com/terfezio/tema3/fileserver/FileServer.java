@@ -23,11 +23,10 @@ public class FileServer {
                 socketClient = serverSocket.accept();
                 System.out.println("\t Llega el cliente: " + numCliente);
 
-                DataOutputStream ps = new DataOutputStream(socketClient.getOutputStream());
-                ps.writeUTF("Usted es mi cliente: "+numCliente);
+                //DataOutputStream ps = new DataOutputStream(socketClient.getOutputStream());
+                //ps.writeUTF("Usted es mi cliente: " + numCliente);
                 UserThread newUser = new UserThread(socketClient, this);
                 newUser.start();
-                socketClient.close();
             } while (true);
 
         } catch (IOException ex) {

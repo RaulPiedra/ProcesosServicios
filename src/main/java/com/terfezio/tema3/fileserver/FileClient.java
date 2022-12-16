@@ -21,14 +21,24 @@ public class FileClient {
             servidor = new Socket(direccion, PUERTO);
             // Operamos con la conexión. En este caso recibimos los datos que nos mandan
             System.out.println("Conexión realizada con éxito");
+            //BufferedReader kb = new BufferedReader(new InputStreamReader(System.in));
+            //System.out.print("Introduzca ruta y nombre de un archivo: ");
+            //String filePath = kb.readLine();
 
-            // Es inputStream porque los recibimos
-            DataInputStream datos = new DataInputStream(servidor.getInputStream());
-            // Si queremos leer normal
-            //System.out.println(datos.readLine());
-            // Si leemos con formato
-            System.out.println(datos.readUTF());
-            // Cerramos la conexión
+            //OutputStream outputStream = servidor.getOutputStream();
+            //DataOutputStream writer = new DataOutputStream(outputStream);
+            //writer.writeUTF(filePath);
+
+            InputStream inputStream = servidor.getInputStream();
+            //BufferedReader fileBufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            //String line = fileBufferedReader.readLine();
+            //while (line != null) {
+            //    System.out.println(line);
+            //    line = fileBufferedReader.readLine();
+            //}
+            DataInputStream dataInputStream = new DataInputStream(inputStream);
+            System.out.println(dataInputStream.readUTF());
+
             servidor.close();
             System.out.println("Soy el cliente y cierro la conexión");
         } catch (Exception e) {

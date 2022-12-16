@@ -6,7 +6,6 @@ import java.net.Socket;
 public class UserThread extends Thread{
     private final Socket socket;
     private final FileServer server;
-    private PrintWriter writer;
 
     public UserThread(Socket socket, FileServer server) {
         this.socket = socket;
@@ -19,7 +18,21 @@ public class UserThread extends Thread{
             BufferedReader reader = new BufferedReader(new InputStreamReader(input));
 
             OutputStream output = socket.getOutputStream();
-            writer = new PrintWriter(output, true);
+            DataOutputStream writer = new DataOutputStream(output);
+            writer.writeUTF("hola");
+
+            String filePath = reader.readLine();
+            System.out.println(filePath);
+            filePath = "C:\\Users\\raul\\IdeaProjects\\ProcesosServicios\\src\\main\\java\\com\\terfezio\\tema3\\fileserver\\FileClient.java";
+
+            BufferedReader fileBufferedReader = new BufferedReader(new FileReader(filePath));
+            String line = fileBufferedReader.readLine();
+            while (line != null) {
+                System.out.println(line);
+                writer.writeUTF(line);
+                line = fileBufferedReader.readLine();
+            }
+            socket.close();
 
         } catch (IOException ex) {
             System.out.println("Error in UserThread: " + ex.getMessage());
