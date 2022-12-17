@@ -44,6 +44,14 @@ public class FileClient {
             }
             System.out.println("===Fin del archivo================");
 
+            bufferedReader.close();
+            inputStreamReader.close();
+            inputStream.close();
+
+            bufferedWriter.close();
+            outputStreamWriter.close();
+            outputStream.close();
+
             servidor.close();
             System.out.println("Cliente cerrando la conexión");
         } catch (Exception e) {
