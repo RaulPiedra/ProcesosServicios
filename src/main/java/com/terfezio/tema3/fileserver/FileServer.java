@@ -4,42 +4,54 @@ import java.io.*;
 import java.net.*;
 
 public class FileServer {
-    private ServerSocket serverSocket;
-    private Socket socketClient;
-    private static final int PORT = 5000;
-    private int numCliente;
+    public static void main(String[] args) {
+        final int PUERTO = 5000;
+        int numCliente = 0;
+        try (ServerSocket serverSocket = new ServerSocket(PUERTO)) {
 
-    public FileServer() {
+            System.out.println("Servidor ejecutándose en el puerto: " + PUERTO);
 
-    }
-
-    public void execute() {
-        try (ServerSocket serverSocket = new ServerSocket(PORT)) {
-
-            System.out.println("Chat Server is listening on port " + PORT);
-
-            do {
+            while(true) {
                 numCliente++;
-                socketClient = serverSocket.accept();
-                System.out.println("\t Llega el cliente: " + numCliente);
+                Socket socketClient = serverSocket.accept();
+                System.out.println("\t Cliente número: " + numCliente);
 
-                //DataOutputStream ps = new DataOutputStream(socketClient.getOutputStream());
-                //ps.writeUTF("Usted es mi cliente: " + numCliente);
-                UserThread newUser = new UserThread(socketClient, this);
-                newUser.start();
-            } while (true);
+                InputStream inputStream = socketClient.getInputStream();
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                OutputStream output = socketClient.getOutputStream();
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(output);
+                BufferedWriter bufferedWriter = new BufferedWriter(outputStreamWriter);
+
+                String filePath = bufferedReader.readLine();
+
+                File file = new File(filePath);
+
+                if (file.exists() && file.isFile()) {
+                    BufferedReader fileBufferedReader = new BufferedReader(new FileReader(file));
+                    String line;
+
+                    while ((line = fileBufferedReader.readLine()) != null) {
+                        bufferedWriter.write(line);
+                        bufferedWriter.newLine();
+                    }
+                    fileBufferedReader.close();
+                }
+                else {
+                    bufferedWriter.write("Error: archivo no encontrado o no es archivo");
+                }
+
+                bufferedWriter.close();
+                bufferedReader.close();
+                socketClient.close();
+            }
 
         } catch (IOException ex) {
-            System.out.println("Error in the server: " + ex.getMessage());
             ex.printStackTrace();
         }
-
     }
 
-    public static void main(String[] args) {
 
-           FileServer fileServer = new FileServer();
-           fileServer.execute();
-    }
 }
 
