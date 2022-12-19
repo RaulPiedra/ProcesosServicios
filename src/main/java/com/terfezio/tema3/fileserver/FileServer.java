@@ -11,6 +11,7 @@ public class FileServer {
 
             System.out.println("Servidor ejecutándose en el puerto: " + PUERTO);
 
+
             while(true) {
                 numCliente++;
                 Socket socketClient = serverSocket.accept();
@@ -43,7 +44,13 @@ public class FileServer {
                 }
 
                 bufferedWriter.close();
+                outputStreamWriter.close();
+                output.close();
+
                 bufferedReader.close();
+                inputStreamReader.close();
+                inputStream.close();
+
                 socketClient.close();
             }
 
