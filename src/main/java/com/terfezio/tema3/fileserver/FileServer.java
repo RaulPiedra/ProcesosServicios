@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.*;
 
 public class FileServer {
+    //utf -ñññññññ
     public static void main(String[] args) {
         final int PUERTO = 5000;
         int numCliente = 0;

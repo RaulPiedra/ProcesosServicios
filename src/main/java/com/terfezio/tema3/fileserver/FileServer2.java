@@ -30,8 +30,13 @@ public class FileServer2 {
                 String filePath = dataInputStream.readUTF();
 
                Path path = Path.of(filePath);
-               String fileContent = Files.readString(path);
-               dataOutputStream.writeUTF(fileContent);
+               if (Files.exists(path) && Files.isRegularFile(path)) {
+                   String fileContent = Files.readString(path);
+                   dataOutputStream.writeUTF(fileContent);
+               } else {
+                   dataOutputStream.writeUTF("No existe el archivo o no es un archivo");
+               }
+
 
                dataOutputStream.close();
                dataInputStream.close();
